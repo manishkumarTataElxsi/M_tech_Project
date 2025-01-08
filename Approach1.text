@@ -1,4 +1,4 @@
-You're aiming to automate the generation of Gherkin test scripts from an ADAS (Advanced Driver-Assistance Systems) user manual using a multi-agent system. Here's a breakdown of how you could approach each step and integrate them into a cohesive system:
+You're aiming to automate the generation of Gherkin test scripts i.e. Behavior Driven Development(BDD) from an ADAS (Advanced Driver-Assistance Systems) user manual using a multi-agent system. Here's a breakdown of how you could approach each step and integrate them into a cohesive system:
 
 Overall Architecture:
 
@@ -10,18 +10,22 @@ Requirement Extraction Agent:
 Input: ADAS User Manual (PDF, Word, or other format).
 Process: Uses Natural Language Processing (NLP) techniques like Named Entity Recognition (NER), dependency parsing, and semantic analysis to identify and extract functional requirements. This agent needs to understand the structure and language of technical documentation.
 Output: Structured requirements (e.g., in JSON or a database). Each requirement should have a unique ID, a textual description, and potentially associated metadata (e.g., priority, category).
+
 Gherkin Generation Agent:
 Input: Structured requirements.
 Process: Translates the requirements into Gherkin scenarios. This agent needs to understand Gherkin syntax (Given, When, Then, And, But) and how to map requirements to executable steps. It may use templates or rules-based translation.
 Output: Gherkin feature files.
+
 Missing Test Case Analysis Agent:
 Input: Structured requirements and generated Gherkin scenarios.
 Process: Compares the generated Gherkin scenarios against the original requirements to identify gaps. It looks for requirements that haven't been adequately covered by test scenarios. This agent needs to understand the semantic relationship between requirements and test cases.
 Output: A report of missing test cases, specifying which requirements are not covered or are only partially covered.
+
 Traceability Report Generation Agent:
 Input: Structured requirements, generated Gherkin scenarios, and missing test case report.
 Process: Creates a traceability matrix or report that links requirements to Gherkin scenarios and highlights missing test cases. This report can be in various formats (e.g., CSV, HTML, or a dedicated reporting tool).
 Output: Traceability report.
+
 Orchestrator Agent:
 Responsibility: Manages the workflow, coordinates the other agents, stores and retrieves data, and controls the iterative process.
 Step-by-Step Implementation:
@@ -34,8 +38,8 @@ Iteration: The Orchestrator agent controls the loop. It checks the traceability 
 Tools and Technologies:
 
 Programming Languages: Python (with libraries like NLTK, spaCy, transformers) is a good choice for NLP and agent development.
-Agent Frameworks: Consider using an agent framework like JADE (Java Agent Development Framework) or an alternative in Python.
-Gherkin Tools: Cucumber, Behave (Python).
+LLMs : Gemini
+Agent Frameworks: Consider using an agent framework like CrewAI.
 Data Storage: A database (e.g., PostgreSQL) or a document store (e.g., MongoDB) can be used to store requirements, Gherkin scenarios, and reports.
 Challenges:
 
@@ -43,14 +47,6 @@ Ambiguity in User Manuals: Natural language can be ambiguous. The Requirement Ex
 Complex Requirements: Some requirements might be complex and difficult to translate directly into Gherkin scenarios.
 Defining Coverage: Determining what constitutes "sufficient coverage" can be challenging.
 By following this approach, you can create a powerful automated system for generating Gherkin test scripts from ADAS user manuals, improving test coverage and reducing manual effort. Remember to start with a small, well-defined subset of the manual and gradually expand the system's capabilities.
-
-
-
-
-
-
-execute this project
-
 
 
 Executing a project of this complexity requires a phased approach. Here's a breakdown of how to get started and iteratively build the system:
@@ -62,9 +58,13 @@ Select a Small Scope: Don't try to process the entire ADAS manual at once. Choos
 Prototype Core Agents:
 
 Requirement Extraction Agent (Simplified): Start with basic NLP techniques like regular expressions or keyword extraction to identify simple requirements.
+
 Gherkin Generation Agent (Rule-Based): Create a set of simple rules to translate the extracted requirements into basic Gherkin scenarios. For example:
 Requirement: "The system shall warn the driver if the vehicle deviates from its lane."
 Rule: "If requirement contains 'warn the driver' and 'deviates from its lane', generate 'Given the vehicle is driving on a marked lane', 'When the vehicle deviates from the lane', 'Then the system should issue a warning'."
+
+Missing Test Case Analysis Agent: Identify the missing test cases using requirements and Gherkin test script
+
 Orchestrator Agent (Basic): Implement a simple script to run the other two agents sequentially and print the generated Gherkin.
 Test and Iterate: Run the POC on your chosen section of the manual. Analyze the results, identify weaknesses in the extraction and generation processes, and refine your agents.
 
@@ -106,9 +106,9 @@ Automated Test Execution: Integrate the generated Gherkin scenarios with a testi
 Tools and Technologies (Expanded):
 
 Programming Language: Python (with libraries like NLTK, spaCy, transformers, scikit-learn).
-Agent Frameworks: JADE (Java), or consider Python alternatives if needed.
-Gherkin Tools: Cucumber (Java, JavaScript, Ruby, etc.), Behave (Python).
-NLP Libraries: spaCy, NLTK, transformers (Hugging Face).
+Agent Frameworks: CrewAI
+Gherkin Tools: Behave (Python).
+NLP Libraries: spaCy, NLTK, transformers (Hugging Face),Gemini.
 Machine Learning Libraries: scikit-learn, TensorFlow, PyTorch.
 Data Storage: PostgreSQL, MongoDB.
 Test Management Tools: Jira, TestRail, Xray.
@@ -122,13 +122,6 @@ This structured approach will help you break down this complex project into mana
 
 
 
-
-
-execute this
-
-
-
-Python
 
 # Phase 1: Proof of Concept (Simplified)
 
