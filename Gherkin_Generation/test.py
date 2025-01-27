@@ -4,7 +4,7 @@ import re
 from crewai import Agent, Task, Crew, Process, LLM
 import os
 
-GEMINI_API_KEY="AIzaSyDXH9Bw-C20gq85vzF2xnNZ3dK6KFS0ePI"
+GEMINI_API_KEY=""
 
 os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
 # Advanced configuration with detailed parameters
