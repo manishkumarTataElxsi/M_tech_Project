@@ -456,7 +456,7 @@ This improved version is much more complete and robust. It addresses many of the
 ```
 
 
-GEMINI_API_KEY= "AIzaSyC0oJrWCInA6ng2yaOIkEU7xYk8do2udag"#"AIzaSyCxkO3jDlUKKyJ_oWlkk32W7AUQuPoN48k"#"AIzaSyDOSHsc0DwLYmHin-x2f8YJdityflEjM_I"
+GEMINI_API_KEY= "
 os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
 
 # Advanced configuration with detailed parameters
