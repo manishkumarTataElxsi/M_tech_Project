@@ -26,6 +26,8 @@
 * Challenges Of Testing Highly Automated Vehicles: A Literature Review
 * Software-Related Challenges of Testing Automated Vehicles
 *  Survey on Scenario-Based Safety Assessment of Automated Vehicles
+*  SIMULATION, TESTING, VERIFICATION, AND VALIDATION (STV2) OF AUTONOMOUS DRIVING https://ieeexplore.ieee.org/document/10709902
+*  
 
 # Large Language Models(LLMs)
 * LLM4Drive: A Survey of Large Language Models for Autonomous Driving https://arxiv.org/pdf/2311.01043
