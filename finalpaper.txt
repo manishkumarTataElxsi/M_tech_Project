@@ -1,0 +1,241 @@
+Abstract—The increasing complexity of Advanced Driver Assistance Systems (ADAS)/Autonomous Driving (AD) technology requires efficient system testing and validation processes. The verification and testing of ADAS and autonomous driving functions relies heavily on scenario-based testing (SBT), where diverse real-world traffic scenarios are simulated to ensure system safety and reliability. Behavior-Driven Development (BDD) offers a structured, natural language approach to defining test scenarios, but its manual implementation remains time-consuming and error-prone. In this paper, we propose a Large Language Model (LLM)-based Multi-Agent System (MAS) approach to automate BDD in scenario-based verification of ADAS. Our framework leverages LLMs and MAS to generate, translate, and refine BDD scenarios into executable test cases. The system enhances efficiency by automating test scenario generation, reducing human effort, and improving adaptability to complex verification tasks. We evaluate our approach using real-world ADAS scenarios in simulation, demonstrating significant improvements in automation, scalability, and verification accuracy compared to traditional methods. This research highlights the potential of LLM-driven multi-agent frameworks in streamlining scenario-based testing for autonomous systems, paving the way for more robust and intelligent verification pipelines in the automotive industry. 
+
+Keywords—Behavior-Driven Development (BDD), Multi-Agent System (MAS), Generative AI, Scenario-Based Verification, Advanced Driver Assistance Systems (ADAS), Large Language Models (LLMs), Software testing.  
+
+ 
+
+Introduction  
+
+Advanced Driver Assistance Systems (ADAS) and autonomous vehicles heavily depend on rigorous testing to ensure safety and reliability and compliance with industry standards. Traditional testing approaches struggle with scalability, adaptability, and efficiency in handling dynamic real-world scenarios. Scenario-based testing has emerged as a pivotal approach in this domain. Scenario-based testing involves testing ADAS and autonomous driving systems against a multitude of predefined driving scenarios to evaluate their performance and safety. However, this approach faces several significant challenges: The vast number of driving scenarios, due to the complexity and unpredictability of real-world environments, makes comprehensive testing impractical. This scenario space explosion necessitates efficient methods to identify and prioritize critical scenarios. Developing a standardized and formal language to describe scenarios is essential for consistency in testing. The lack of such standardization can lead to ambiguities and inconsistencies in scenario definitions. Autonomous vehicles consist of diverse hardware and software components developed by different manufacturers. This heterogeneity poses challenges in the certification process, especially when components operate as black boxes without disclosed internal behaviors. 
+
+Behavior-Driven Development (BDD) offers a structured methodology to address some of these challenges: BDD facilitates the creation of test scenarios in natural language, making them more accessible and understandable to stakeholders. This approach enhances collaboration between developers, testers, and domain experts. By using a common language, BDD bridges the gap between technical and non-technical team members, ensuring that everyone has a clear understanding of the system's expected behaviors. BDD promotes the identification of potential issues early in the development process, reducing costly revisions later. 
+
+Integrating LLMs and MAS can significantly enhance the automation of BDD in ADAS verification. LLMs, trained on vast datasets, can automatically generate diverse and complex test scenarios in natural language, covering a wide range of driving situations. LLMs can translate natural language scenarios into executable test scripts, streamlining the testing process. MAS can manage this process by multiple AI agent, each specialized to complete a particular task. 
+
+This paper introduces a novel framework that integrates LLMs and MAS to automate BDD-based verification of ADAS and autonomous driving systems. Leveraging LLMs power MAS to automatically create comprehensive and diverse test scenarios in natural language. Developing methods to convert these natural language scenarios into executable test cases. Utilizing MAS to generate complex test scenarios. Assessing the effectiveness of the proposed framework through extensive experiments, demonstrating improvements in testing efficiency and coverage. By addressing the challenges in scenario-based testing, this framework aims to enhance the safety and reliability of ADAS and autonomous driving systems. 
+
+Background & related work 
+
+In this section, we explore the foundational concepts and related research pertinent to our study, focusing on Scenario-Based Testing (SBT) of ADAS, the application of Behavior-Driven Development (BDD) for natural language scenario definition, the role of Multi-Agent Systems (MAS) in automation, and the integration of Large Language Models (LLMs) in software engineering. 
+
+Behavior-Driven Development (BDD) for Natural Language Scenario  
+
+Text Box 1, TextboxBehavior-Driven Development (BDD) is an agile software development methodology [1] that emphasizes collaboration and communication between technical-developers, testers, and non-technical stakeholders by using natural language to define system behaviors [2][3][4][5]. In the context of ADAS testing, BDD allows for the specification of driving scenarios in a format that is easily understandable by both technical and non-technical stakeholders. This is often achieved using the Gherkin language, which structures scenarios in a Given-When-Then format, promoting clarity and shared understanding. Gherkin language splits a scenario into three core elements: Given (i.e., a context assumed for this scenario execution), When (i.e., an action or event that occurs in the given context), and Then (the expected outcome of the system for the provided action and context). An element can have additional context, expressed in the template by the words And, But [6][7][8]. By employing BDD, teams can create executable specifications that serve as both documentation and automated tests. This alignment ensures that the system's behavior meets the specified requirements and facilitates early detection of discrepancies during development. 
+
+ 
+
+An example template based on [2][3][4][5] for specifying scenarios 
+
+Benefits of Behavior-Driven Development  
+
+Scenario-Based Testing of ADAS 
+
+Scenario-Based Testing (SBT) is a critical method in the development and validation of Advanced Driver-Assistance Systems (ADAS) and autonomous vehicles. SBT involves the systematic creation and execution of driving scenarios to evaluate the performance and safety of these systems. This approach addresses the need for comprehensive testing by simulating a wide range of real-world situations, thereby identifying potential system failures before deployment. 
+
+The complexity of real-world driving environments leads to a vast number of scenarios, making exhaustive testing impractical. To manage this, standardized scenario description languages, such as ASAM OpenSCENARIO® DSL, have been developed. These languages provide a human-readable format for defining test scenarios, facilitating consistency and reusability in testing processes. ASAM OpenSCENARIO® DSL supports various levels of scenario abstraction, enabling testers to specify scenarios ranging from high-level intents to detailed concrete instances. 
+
+Benefits of Scenario-Based Testing of ADAS 
+
+Benefits of Behavior Driven Development in Scenario-based Verification of Automated Driving 
+
+Developing and verifying automated driving software is complicated due to the vast and potentially infinite range of driving scenarios within an Operational Design Domain (ODD). Current scenario-based approaches focus heavily on optimizing safety-related loss functions, leaving significant parts of the driving function specifications underutilized in corner-case detection, which limits verification effectiveness. The study in [18] applies BDD principles using Gherkin syntax to describe system-level requirements for automated driving functions and evaluates them through simulation. Gherkin syntax bridges communication gaps between system engineers and test engineers. Logical driving scenarios remain function-independent, eliminating the need to tailor them to specific test goals. Scenarios and Gherkin files are reusable across different development branches and verification approaches. Using Gherkin syntax enhances the linkage between system specifications and state-of-the-art verification and optimization methods, making it a promising approach for improving scenario-based verification. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+LLM based Multi-Agent Systems  
+
+Multi-Agent Systems (MAS) involves multiple interacting AI-driven agents working collaboratively to perform complex tasks. Each agent has its own goals, abilities, and decision-making processes, and they can communicate to achieve system-wide objectives. In the realm of ADAS testing, MAS can manage the process of generation of test cases based on real-world driving data by using Multiple AI agents. This capability is crucial for creating realistic and dynamic test environments that closely mimic real-world conditions. Agents can be designed to autonomously generate test scenarios, execute tests, and analyze outcomes, thereby enhancing the efficiency and effectiveness of the testing process. 
+
+Large Language Models (LLMs) in Software Development 
+
+     Large Language Models (LLMs), such as Gemini, GPT-4 and its successors, have demonstrated remarkable capabilities in understanding and generating human-like text. In software engineering, LLMs have been applied to various tasks, including code generation, documentation, and automated testing. Recent advancements have enabled LLMs to perform complex reasoning and tool use, enhancing their utility in software automation. For instance, LLMs can interpret natural language requirements and generate corresponding code or test cases, thereby streamlining the development process. However, challenges remain in ensuring the accuracy and reliability of LLM-generated outputs. Ongoing research focuses on improving LLMs' ability to understand context, handle ambiguous inputs, and integrate with other systems to perform tasks effectively. By integrating LLMs with MAS and BDD methodologies, there is potential to automate the generation and execution of natural language  
+
+ 
+
+ 
+
+test scenarios for ADAS, leading to more efficient and comprehensive testing processes. 
+
+This exploration of SBT, BDD, MAS, and LLMs provides a foundation for understanding the current landscape and identifying opportunities for innovation in automating ADAS testing process. 
+
+Proposed approach 
+
+To automate Behavior-Driven Development (BDD) for scenario-based testing of ADAS/Autonomous Driving, we propose an LLM-based Multi-Agent System (MAS) framework. This approach leverages Large Language Models (LLMs) to generate, translate, and refine BDD scenarios into executable test cases, while Multi-Agent Systems (MAS) manage the process of scenario-based test case generation. 
+
+Architecture of LLM-based MAS System 
+
+     The proposed system consists of five core agents that work together to automate scenario generation, test case creation, simulation, execution, and evaluation. 
+
+Agent 1: Test Scenario Generator Agent (TSG) 
+
+The Test Scenario Generator Agent (TSG) is responsible for automating the generation of test scenarios based on high-level natural language descriptions. This agent uses Large Language Models (LLMs) such as Gemini, GPT, Llama to generate all scenarios based on user-defined requirements.  
+
+Agent 2: BDD Testcase Generator Agent (BTG) 
+
+The BDD Testcase Generator Agent (BTG) is responsible for automating the generation of testcases based on the user-defined requirements and scenarios generated by agent TSG. This agent uses Large Language Models (LLMs) such as Gemini, GPT, Llama to translate user-defined requirements and generated scenarios into structured, executable test cases that adhere to Behavior-Driven Development (BDD) principles. The BTG processes human-written scenario descriptions and converts them into BDD-compliant Gherkin format. Ensures the generation of edge cases (e.g., adverse weather, sudden pedestrian crossings). Generates variants of the same scenario with different speeds, reaction times, and environmental conditions to enhance testing coverage. 
+
+Agent 3: Scenario Executor Agent (SEA) 
+
+ 
+
+This agent handles translating structured BDD test cases scenarios into simulation-compatible scripts. Converts BDD scenarios and machine-readable test cases into executable scripts for simulators. Supports multiple output formats: OpenSCENARIO XML (industry-standard for structured scenario definition), CARLA Python API (for high-fidelity real-time simulation), LGSVL JSON-based Scenario  
+
+Configurations (for perception and planning testing) and ensure that all necessary parameters (e.g., vehicle speed, pedestrian crossing times, road conditions) are accurately configured. 
+
+Agent 4: Scenario Simulation Agent (SSA) 
+
+The Scenario Simulation Agent (SSA) integrated with the multiple ADAS simulation tools plays a crucial role in simulating the generated test scenarios within ADAS simulation frameworks such as CARLA, LGSVL, and OpenSCENARIO, deploying them, and coordinating the execution. It loads the translated test scenarios into the selected ADAS simulation environment. 
+
+Agent 5: Evaluation Agent (EA) 
+
+The Evaluation Agent (EA) handles analyzing and interpreting the results of executed test scenarios. It collects execution data, compares system behavior against predefined safety standards, and decides whether an ADAS/autonomous system meets expected performance criteria. Uses LLMs to interpret and summarize simulation logs. Converts complex log data into human-readable test reports by correlating actual system behavior with expected outcomes.  
+
+This automated evaluation framework ensures that ADAS testing is efficient, scalable, and compliant with industry safety standards, reducing the need for manual test interpretation. 
+
+ Agents Interaction Flow 
+
+The interaction between these agents follows a structured sequential workflow: 
+
+Scenario Generator Agent receives user-defined requirements and generates scenarios. 
+
+BDD Testcase Generator Agent converts the scenarios generated by Scenario Generator Agent into BDD testcase (Gherkin syntax Given-When-Then format). 
+
+Scenario Simulation Agent converts the BDD testcases into simulation scripts. 
+
+Scenario Executor Agent loads the simulation scripts into a simulation framework (CARLA, LGSVL, OpenSCENARIO). 
+
+Evaluation Agent collects and analyzes results, comparing expected vs. actual system behavior. A final test report is generated, providing insights into system performance. 
+
+Automation of Behavior-Driven Development 
+
+Converting Natural Language into Executable BDD Test Cases 
+
+A key feature of the LLM-based Multi-Agent System (MAS) is its ability to automate the transformation of natural language test descriptions into executable test cases. This process is crucial for automating scenario-based verification of ADAS/autonomous driving systems. Large Language Models (LLMs) analyze high-level scenario descriptions and find key behavioral elements, such as: Vehicle speed and movement patterns, Traffic participants (pedestrians, other vehicles, obstacles), Expected system responses (e.g., braking, lane change, acceleration), Time constraints and safety margins. Once an LLM extracts relevant scenario details, it automatically generates a Behavior-Driven Development (BDD) scenario in Gherkin format.   
+
+Coverting BDD test cases into an executable simulation script 
+
+This script is formatted for ADAS testing environments, such as: CARLA (Python API), LGSVL (JSON-based scenario configuration), OpenSCENARIO (XML/JSON format for structured scenarios). These structured test cases can now be executed in ADAS simulators, ensuring repeatable and automated validation of emergency braking performance. 
+
+Scenario Execution & Verification 
+
+Integration with ADAS Simulation Framework 
+
+To confirm our approach, we integrate with leading ADAS simulation tools, such as: 
+
+CARLA(Open-source simulator for autonomous driving): Uses Python API for defining test scenarios. 
+
+LGSVL(Simulation platform for perception and control testing): Compatible with Apollo & Autoware stacks and provides real-world sensor data simulation. 
+
+OpenSCENARIO(Industry-standard scenario format): Enables structured scenario representation and ensures compatibility across different simulators. 
+
+ 
+
+Analysis the Simulation Outputs 
+
+Case study 
+
+This section presents case study, evaluation metrics, and comparisons to show the effectiveness of our LLM-based MAS framework for ADAS verification. To evaluate the system, we selected a common ADAS feature and automated its execution using our framework. 
+
+Case Study: Emergency Braking for Pedestrian Detection 
+
+Requirement Input: "An ADAS-equipped vehicle should detect a pedestrian crossing suddenly and apply emergency breaking within 2 seconds." 
+
+Generated BDD Scenario (Gherkin Format): 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  
+
+                                                                                                                                        
+
+Experimental Results 
+
+ 
+
+Discussion & Future Work 
+
+This paper explores the evolving role of LLM based MAS in Automation of Behavior-Driven Development in Scenario-Based testing of ADAS.   
+
+Challenges & Limitations 
+
+While our LLM-based MAS framework improves scenario-based verification for ADAS, several challenges and limitations remain. LLMs sometimes generate syntactically correct but semantically incorrect BDD scenarios due to a lack of domain-specific fine-tuning for automotive safety standards. To address this, fine-tuning LLMs on ADAS-specific datasets, such as Euro NCAP test cases, can improve accuracy by incorporating real-world safety requirements. Additionally, implementing constraint-based filtering can help validate the correctness of generated scenarios by ensuring alignment with predefined safety criteria. To further enhance reliability, a human-in-the-loop approach can be introduced for initial verification, allowing experts to review and refine test scenarios before execution. 
+
+Agents in the MAS framework require better real-time synchronization to effectively handle complex, multi-actor scenarios, such as multi-vehicle interactions in urban environments. To improve coordination, implementing decentralized decision-making can enable agents to operate autonomously while maintaining collaborative behavior. Additionally, optimizing message-passing mechanisms using frameworks like SPADE or JADE can enhance communication efficiency, reducing latency and ensuring seamless interaction among agents during scenario execution. 
+
+LLMs may struggle to generate rare, high-risk scenarios, such as sudden child crossings or extreme weather conditions, due to training data being biased toward common driving situations. To address this, reinforcement learning (RL) can be employed to enhance scenario diversity by encouraging the generation of edge cases that challenge ADAS performance. Additionally, augmenting training data with synthetic edge cases derived from real-world incident reports can improve the model’s ability to simulate critical but uncommon driving scenarios, ensuring more robust and comprehensive ADAS verification. 
+
+Future Enhancements 
+
+To further enhance our system, we propose the following future research directions: Fine-Tuning LLMs for Automotive-Specific Testing on ADAS regulatory datasets. Incorporate real-world accident datasets to generate more realistic test cases. Use self-supervised learning to improve scenario translation accuracy. Expanding Multi-Agent System Capabilities by Introducing hierarchical MAS architectures for better coordination between scenario execution agents. Improve distributed computing support, enabling parallel execution of large-scale scenario tests. Deploy our framework in real-world vehicle-in-the-loop (VIL) and hardware-in-the-loop (HIL) testing. Validate test scenarios using physical ADAS test platforms. Work toward standardizing AI-driven verification processes for ADAS certification. 
+
+ 
+
+References 
+
+ 
+
+Samar Al-Saqqa, Samer Sawalha, and Hiba AbdelNabi. 2020. Agile software development: Methodologies and trends. International Journal of Interactive Mobile Technologies 14, 11 (2020). 
+
+D. Chelimsky, D. Astels, B. Helmkamp, D. North, Z. Dennis, and A. Hellesoy, The RSpec Book: Behaviour Driven Development with Rspec, Cucumber, and Friends, 1st ed. Pragmatic Bookshelf, 2010. [Online]. Available: https://dl.acm.org/doi/10.5555/1965448   
+
+G. Nagy and S. Rose, The BDD Books - Discovery Explore behaviour using examples. Leanpub, 2018. [Online]. Available: https://leanpub. com/bddbooks-discovery   
+
+The BDD Books – Formulation Document examples with Given/When/Then. Leanpub, 2021. [Online]. Available: https: //leanpub.com/bddbooks-formulation  
+
+John Ferguson Smart. 2014. BDD in Action. Manning Publications. 
+
+Gherkin Syntax. Accessed: Jan. 24, 2024. [Online]. Available: https://cucumber.io/docs/   
+
+K. Nicieja, Writing Great Specifications: Using Specification by    Example and Gherkin. Shelter Island, NY, USA: Manning, 2017 
+
+Gherkin Syntax. Accessed: Jan. 24, 2024. [Online]. Available: https://docs.specflow.org/projects/specflow/en/latest/Gherkin/GherkinReference 
+
+L. P. Binamungu, S. M. Embury, and N. Konstantinou, ‘‘Characterising the quality of behaviour driven development specifications,’’ in Proc. Agile Processes Softw. Eng. Extreme Program., 21st Int. Conf. Agile Softw. Develop., XP, Jun. 2020, pp. 87–102.  
+
+M. S. Farooq, U. Omer, A. Ramzan, M. A. Rasheed, and Z. Atal, ‘‘Behavior driven development: A systematic literature review,’’ IEEE Access, vol. 11, pp. 88008–88024, 2023, doi: 10.1109/ACCESS.2023.3302356. [8] O. Bezsmertnyi, N. Golian, V. Golian, and I. Afanasieva. 
+
+H. M. Abushama, H. A. Alassam, and F. A. Elhaj, ‘‘The effect of test-driven development and behavior-driven development on project success factors: A systematic literature review-based study,’’ in Proc. Int. Conf. Comput., Control, Electr., Electron. Eng. (ICCCEEE), Khartoum, Sudan, Feb. 2021, pp. 1–9, doi: 10.1109/ICCCEEE49695.2021.9429593.  
+
+V. M. Arredondo-Reyes, S. Domínguez-Isidro, Á. J. Sánchez-García and J. O. Ocharán-Hernández, "Benefits and Challenges of the Behavior-Driven Development: A Systematic Literature Review," 2023 11th International Conference in Software Engineering Research and Innovation (CONISOFT), León, Guanajuato, Mexico, 2023, pp. 45-54, doi: 10.1109/CONISOFT58849.2023.00016. 
+
+C. Solis and X. Wang, "A Study of the Characteristics of Behaviour Driven Development," 2011 37th EUROMICRO Conference on Software Engineering and Advanced Applications, Oulu, Finland, 2011, pp. 383-387, doi: 10.1109/SEAA.2011.76. 
+
+S. Karpurapu et al., "Comprehensive Evaluation and Insights into the Use of Large Language Models in the Automation of Behavior-Driven Development Acceptance Test Formulation," in IEEE Access, vol. 12, pp. 58715-58721, 2024, doi: 10.1109/ACCESS.2024.3391815. 
+
+A. Knauss, J. Schroder, C. Berger, and H. Eriksson, "Software-Related Challenges of Testing Automated Vehicles," 2017 IEEE/ACM 39th International Conference on Software Engineering Companion (ICSE-C), Buenos Aires, Argentina, 2017, pp. 328-330, doi: 10.1109/ICSE-C.2017.67.  
+
+D. Karunakaran, J. S. Berrio, S. Worrall and E. Nebot, "Challenges Of Testing Highly Automated Vehicles: A Literature Review," 2022 IEEE International Conference on Recent Advances in Systems Science and Engineering (RASSE), Tainan, Taiwan, 2022, pp. 1-8, doi: 10.1109/RASSE54974.2022.9989562. 
+
+F. Beringhoff, J. Greenyer, C. Roesener and M. Tichy, "Thirty-One Challenges in Testing Automated Vehicles: Interviews with Experts from Industry and Research," 2022 IEEE Intelligent Vehicles Symposium (IV), Aachen, Germany, 2022, pp. 360-366, doi: 10.1109/IV51971.2022.9827097. 
+
+C. Lauer and C. Sippl, "Benefits of Behavior Driven Development in Scenario-based Verification of Automated Driving," 2022 IEEE 25th International Conference on Intelligent Transportation Systems (ITSC), Macau, China, 2022, pp. 105-110, doi: 10.1109/ITSC55140.2022.9922498. 
+
+C. Sippl, F. Bock, C. Lauer, A. Heinz, T. Neumayer and R. German, "Scenario-Based Systems Engineering: An Approach Towards Automated Driving Function Development," 2019 IEEE International Systems Conference (SysCon), Orlando, FL, USA, 2019, pp. 1-8, doi: 10.1109/SYSCON.2019.8836763.  
+
+C. Lauer and C. Sippl, "Benefits of Behavior Driven Development in Scenario-based Verification of Automated Driving," 2022 IEEE 25th International Conference on Intelligent Transportation Systems (ITSC), Macau, China, 2022, pp. 105-110, doi: 10.1109/ITSC55140.2022.9922498. 
+
+Hu, Yue & Cai, Yuzhu & Du, Yaxin & Zhu, Xinyu & Liu, Xiangrui & Yu, Zijie & Hou, Yuchen & Tang, Shuo & Chen, Siheng. (2024). Self-Evolving Multi-Agent Collaboration Networks for Software Development. 10.48550/arXiv.2410.16946. 
+
+Junda He, Christoph Treude, and David Lo. 2025. LLM-Based Multi-Agent Systems for Software Engineering: Literature Review, Vision, and the Road Ahead. ACM Trans. Softw. Eng. Methodol.  
+
+ 
+
+ 
+
+ 
